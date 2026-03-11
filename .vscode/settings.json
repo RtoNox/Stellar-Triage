@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Stellar Triage.sln"
+    "dotnet.defaultSolution": "Stellar-Triage.sln"
 }
