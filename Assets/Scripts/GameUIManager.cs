@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-    MainMenu,
+    Playing,
+    Pause,
     SaveFiles,
-    Settings
+    MainMenu
 }
 
-public class MainMenuManager : MonoBehaviour
+public class GameUIManager : MonoBehaviour
 {
-    public GameObject settingsUI;
-    public GameObject mainMenuUI;
+    public GameObject pauseUI;
+    public GameObject gameUI;
     public GameObject saveFilesUI;
 
     public static MainMenuManager instance;
@@ -26,6 +27,17 @@ public class MainMenuManager : MonoBehaviour
         currentState = newState;
     }
     
+    public void ChangeToPlaying()
+    {
+        ChangeState(GameState.Playing);
+    }
+
+
+    public void ChangeToPause()
+    {
+        ChangeState(GameState.Pause);
+    }
+
     public void ChangeToSaveFiles()
     {
         ChangeState(GameState.SaveFiles);
@@ -33,12 +45,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ChangeToMainMenu()
     {
-        ChangeState(GameState.MainMenu);
-    }
-
-    public void ChangeToSettings()
-    {
-        ChangeState(GameState.Settings);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     private IEnumerator TransitionToState(GameState newState)
@@ -58,13 +65,16 @@ public class MainMenuManager : MonoBehaviour
 
         switch (currentState)
         {
-            case GameState.MainMenu:
-                mainMenuUI.SetActive(true);
+            case GameState.Playing:
+                Time.timeScale = 1;
+                gameUI.SetActive(true);
                 break;
-            case GameState.Settings:
-                settingsUI.SetActive(true);
+            case GameState.Pause:
+                Time.timeScale = 0;
+                pauseUI.SetActive(true);
                 break;
             case GameState.SaveFiles:
+                Time.timeScale = 0;
                 saveFilesUI.SetActive(true);
                 break;
         }
@@ -73,11 +83,10 @@ public class MainMenuManager : MonoBehaviour
     
     private void HideAllMenu()
     {
-        mainMenuUI.SetActive(false);
-        settingsUI.SetActive(false);
+        gameUI.SetActive(false);
+        pauseUI.SetActive(false);
         saveFilesUI.SetActive(false);
     }
-
 
     public void QuitGame()
     {
