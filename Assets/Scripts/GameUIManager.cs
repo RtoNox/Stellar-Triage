@@ -25,6 +25,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject shopUI;
     public GameObject leftPanelUI;
     public GameObject minigameSideInterface;
+    public GameObject mainGameInterface;
 
     public Button pauseButt;
     public Button shopButt;
@@ -33,11 +34,6 @@ public class GameUIManager : MonoBehaviour
     public static MainMenuManager instance;
     public GameState currentState { get; private set; }
 
-    void Start()
-    {
-        minigameSideInterface.SetActive(false);
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -45,14 +41,17 @@ public class GameUIManager : MonoBehaviour
             if (currentState == GameState.Shopping || currentState == GameState.LeftPanel)
             {
                 ChangeState(GameState.Playing);
+                EnableAllButton();
             }
             else if (currentState != GameState.Pause)
             {
                 ChangeState(GameState.Pause);
+                DisableAllButton();
             }
             else
             {
                 ChangeState(GameState.Playing);
+                EnableAllButton();
             }
         }
     }
@@ -152,6 +151,7 @@ public class GameUIManager : MonoBehaviour
             case GameState.MinigameSide:
                 Time.timeScale = 1;
                 minigameSideInterface.SetActive(true);
+                mainGameInterface.SetActive(false);
                 break;
         }
     }

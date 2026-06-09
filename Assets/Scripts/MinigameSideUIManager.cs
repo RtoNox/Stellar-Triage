@@ -17,13 +17,9 @@ public class MinigameSideUIManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject gameUI;
     public GameObject mainGameInterface;
+    public GameObject minigameSideInterface;
 
     public GameStateMiniSide currentState { get; private set; }
-
-    void Start()
-    {
-        mainGameInterface.SetActive(false);
-    }
 
     void Update()
     {
@@ -88,8 +84,10 @@ public class MinigameSideUIManager : MonoBehaviour
                 pauseUI.SetActive(true);
                 break;
             case GameStateMiniSide.MainGame:
+                gameUI.SetActive(true);
                 Time.timeScale = 1;
                 mainGameInterface.SetActive(true);
+                minigameSideInterface.SetActive(false);
                 break;
         }
     }
