@@ -10,7 +10,8 @@ public enum GameState
     SaveFiles,
     MainMenu,
     Settings,
-    Shopping
+    Shopping,
+    LeftPanel
 }
 
 public class GameUIManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject saveFilesUI;
     public GameObject settingsUI;
     public GameObject shopUI;
+    public GameObject leftPanelUI;
 
     public static MainMenuManager instance;
     public GameState currentState { get; private set; }
@@ -28,7 +30,7 @@ public class GameUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentState == GameState.Shopping)
+            if (currentState == GameState.Shopping || currentState == GameState.LeftPanel)
             {
                 ChangeState(GameState.Playing);
             }
@@ -75,6 +77,11 @@ public class GameUIManager : MonoBehaviour
         ChangeState(GameState.Shopping);
     }
 
+    public void ChangeToLeftPanel()
+    {
+        ChangeState(GameState.LeftPanel);
+    }
+
     public void ChangeToMainMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
@@ -117,6 +124,10 @@ public class GameUIManager : MonoBehaviour
                 Time.timeScale = 1;
                 shopUI.SetActive(true);
                 break;
+            case GameState.LeftPanel:
+                Time.timeScale = 1;
+                leftPanelUI.SetActive(true);
+                break;
         }
     }
 
@@ -128,6 +139,7 @@ public class GameUIManager : MonoBehaviour
         saveFilesUI.SetActive(false);
         settingsUI.SetActive(false);
         shopUI.SetActive(false);
+        leftPanelUI.SetActive(false);
     }
 
     public void QuitGame()
