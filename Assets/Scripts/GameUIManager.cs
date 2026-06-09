@@ -9,7 +9,8 @@ public enum GameState
     Pause,
     SaveFiles,
     MainMenu,
-    Settings
+    Settings,
+    Shopping
 }
 
 public class GameUIManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject gameUI;
     public GameObject saveFilesUI;
     public GameObject settingsUI;
+    public GameObject shopUI;
 
     public static MainMenuManager instance;
     public GameState currentState { get; private set; }
@@ -26,7 +28,11 @@ public class GameUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentState != GameState.Pause)
+            if (currentState == GameState.Shopping)
+            {
+                ChangeState(GameState.Playing);
+            }
+            else if (currentState != GameState.Pause)
             {
                 ChangeState(GameState.Pause);
             }
@@ -49,7 +55,6 @@ public class GameUIManager : MonoBehaviour
         ChangeState(GameState.Playing);
     }
 
-
     public void ChangeToPause()
     {
         ChangeState(GameState.Pause);
@@ -63,6 +68,11 @@ public class GameUIManager : MonoBehaviour
     public void ChangeToSettings()
     {
         ChangeState(GameState.Settings);
+    }
+
+    public void ChangeToShopping()
+    {
+        ChangeState(GameState.Shopping);
     }
 
     public void ChangeToMainMenu()
@@ -103,6 +113,10 @@ public class GameUIManager : MonoBehaviour
                 Time.timeScale = 0;
                 settingsUI.SetActive(true);
                 break;
+            case GameState.Shopping:
+                Time.timeScale = 1;
+                shopUI.SetActive(true);
+                break;
         }
     }
 
@@ -113,6 +127,7 @@ public class GameUIManager : MonoBehaviour
         pauseUI.SetActive(false);
         saveFilesUI.SetActive(false);
         settingsUI.SetActive(false);
+        shopUI.SetActive(false);
     }
 
     public void QuitGame()
