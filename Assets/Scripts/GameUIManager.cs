@@ -12,7 +12,8 @@ public enum GameState
     MainMenu,
     Settings,
     Shopping,
-    LeftPanel
+    LeftPanel,
+    MinigameSide
 }
 
 public class GameUIManager : MonoBehaviour
@@ -23,6 +24,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject settingsUI;
     public GameObject shopUI;
     public GameObject leftPanelUI;
+    public GameObject minigameSideInterface;
 
     public Button pauseButt;
     public Button shopButt;
@@ -30,6 +32,11 @@ public class GameUIManager : MonoBehaviour
 
     public static MainMenuManager instance;
     public GameState currentState { get; private set; }
+
+    void Start()
+    {
+        minigameSideInterface.SetActive(false);
+    }
 
     void Update()
     {
@@ -91,6 +98,11 @@ public class GameUIManager : MonoBehaviour
         DisableAllButton();
     }
 
+    public void ChangeToMinigameSide()
+    {
+        ChangeState(GameState.MinigameSide);
+    }
+
     public void ChangeToMainMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
@@ -136,6 +148,10 @@ public class GameUIManager : MonoBehaviour
             case GameState.LeftPanel:
                 Time.timeScale = 1;
                 leftPanelUI.SetActive(true);
+                break;
+            case GameState.MinigameSide:
+                Time.timeScale = 1;
+                minigameSideInterface.SetActive(true);
                 break;
         }
     }
