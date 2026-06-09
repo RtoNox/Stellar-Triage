@@ -150,8 +150,8 @@ public class GameUIManager : MonoBehaviour
                 break;
             case GameState.MinigameSide:
                 Time.timeScale = 1;
-                minigameSideInterface.SetActive(true);
                 mainGameInterface.SetActive(false);
+                minigameSideInterface.SetActive(true);
                 break;
         }
     }
