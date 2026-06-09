@@ -14,7 +14,14 @@ public class ClockController : MonoBehaviour
 
     private void Update()
     {
+        float previousTime = elapsedTime;
         elapsedTime += Time.deltaTime * timeScale;
+        
+        if (previousTime < timeInADay && elapsedTime >= timeInADay)
+        {
+            dayCount += 1;
+        }
+        
         elapsedTime %= timeInADay;
         UpdateClockUI();
         UpdateDay();
@@ -26,16 +33,12 @@ public class ClockController : MonoBehaviour
         int minutes = Mathf.FloorToInt((elapsedTime - hours * 3600f) / 60f);
         int seconds = Mathf.FloorToInt((elapsedTime - hours * 3600f) - (minutes * 60f));
 
-        string clockString = string.Format("{0:00}:{1:00}",hours, minutes);
+        string clockString = string.Format("{0:00}:{1:00}", hours, minutes);
         time.text = clockString;
     }
 
     void UpdateDay()
     {
-        if (elapsedTime >= timeInADay)
-        {
-        dayCount += 1;
-        }
         day.text = dayCount.ToString();
     }
 }
