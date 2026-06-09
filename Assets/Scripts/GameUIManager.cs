@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public enum GameState
@@ -22,6 +23,10 @@ public class GameUIManager : MonoBehaviour
     public GameObject settingsUI;
     public GameObject shopUI;
     public GameObject leftPanelUI;
+
+    public Button pauseButt;
+    public Button shopButt;
+    public Button leftPanelButt;
 
     public static MainMenuManager instance;
     public GameState currentState { get; private set; }
@@ -55,11 +60,13 @@ public class GameUIManager : MonoBehaviour
     public void ChangeToPlaying()
     {
         ChangeState(GameState.Playing);
+        EnableAllButton();
     }
 
     public void ChangeToPause()
     {
         ChangeState(GameState.Pause);
+        DisableAllButton();
     }
 
     public void ChangeToSaveFiles()
@@ -75,11 +82,13 @@ public class GameUIManager : MonoBehaviour
     public void ChangeToShopping()
     {
         ChangeState(GameState.Shopping);
+        DisableAllButton();
     }
 
     public void ChangeToLeftPanel()
     {
         ChangeState(GameState.LeftPanel);
+        DisableAllButton();
     }
 
     public void ChangeToMainMenu()
@@ -134,12 +143,25 @@ public class GameUIManager : MonoBehaviour
     
     private void HideAllMenu()
     {
-        gameUI.SetActive(false);
         pauseUI.SetActive(false);
         saveFilesUI.SetActive(false);
         settingsUI.SetActive(false);
         shopUI.SetActive(false);
         leftPanelUI.SetActive(false);
+    }
+
+    private void DisableAllButton()
+    {
+        pauseButt.interactable = false;
+        leftPanelButt.interactable = false;
+        shopButt.interactable = false;
+    }
+
+    private void EnableAllButton()
+    {
+        pauseButt.interactable = true;
+        leftPanelButt.interactable = true;
+        shopButt.interactable = true;
     }
 
     public void QuitGame()
