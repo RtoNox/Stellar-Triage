@@ -20,6 +20,7 @@ public class MainMenuManager : MonoBehaviour
     public static MainMenuManager instance;
     public MenuState currentState { get; private set; }
 
+    
     public void ChangeState(MenuState newState)
     {
         StartCoroutine(TransitionToState(newState));

@@ -8,7 +8,8 @@ public enum GameState
     Playing,
     Pause,
     SaveFiles,
-    MainMenu
+    MainMenu,
+    Settings
 }
 
 public class GameUIManager : MonoBehaviour
@@ -16,9 +17,25 @@ public class GameUIManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject gameUI;
     public GameObject saveFilesUI;
+    public GameObject settingsUI;
 
     public static MainMenuManager instance;
     public GameState currentState { get; private set; }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentState != GameState.Pause)
+            {
+                ChangeState(GameState.Pause);
+            }
+            else
+            {
+                ChangeState(GameState.Playing);
+            }
+        }
+    }
 
     public void ChangeState(GameState newState)
     {
@@ -41,6 +58,11 @@ public class GameUIManager : MonoBehaviour
     public void ChangeToSaveFiles()
     {
         ChangeState(GameState.SaveFiles);
+    }
+
+    public void ChangeToSettings()
+    {
+        ChangeState(GameState.Settings);
     }
 
     public void ChangeToMainMenu()
@@ -77,6 +99,10 @@ public class GameUIManager : MonoBehaviour
                 Time.timeScale = 0;
                 saveFilesUI.SetActive(true);
                 break;
+            case GameState.Settings:
+                Time.timeScale = 0;
+                settingsUI.SetActive(true);
+                break;
         }
     }
 
@@ -86,6 +112,7 @@ public class GameUIManager : MonoBehaviour
         gameUI.SetActive(false);
         pauseUI.SetActive(false);
         saveFilesUI.SetActive(false);
+        settingsUI.SetActive(false);
     }
 
     public void QuitGame()
