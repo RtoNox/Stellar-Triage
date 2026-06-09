@@ -1,0 +1,137 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum GameState
+{
+    Playing,
+    Pause,
+    SaveFiles,
+    MainMenu,
+    Settings,
+    Shopping
+}
+
+public class GameUIManager : MonoBehaviour
+{
+    public GameObject pauseUI;
+    public GameObject gameUI;
+    public GameObject saveFilesUI;
+    public GameObject settingsUI;
+    public GameObject shopUI;
+
+    public static MainMenuManager instance;
+    public GameState currentState { get; private set; }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentState == GameState.Shopping)
+            {
+                ChangeState(GameState.Playing);
+            }
+            else if (currentState != GameState.Pause)
+            {
+                ChangeState(GameState.Pause);
+            }
+            else
+            {
+                ChangeState(GameState.Playing);
+            }
+        }
+    }
+
+    public void ChangeState(GameState newState)
+    {
+        StartCoroutine(TransitionToState(newState));
+
+        currentState = newState;
+    }
+    
+    public void ChangeToPlaying()
+    {
+        ChangeState(GameState.Playing);
+    }
+
+    public void ChangeToPause()
+    {
+        ChangeState(GameState.Pause);
+    }
+
+    public void ChangeToSaveFiles()
+    {
+        ChangeState(GameState.SaveFiles);
+    }
+
+    public void ChangeToSettings()
+    {
+        ChangeState(GameState.Settings);
+    }
+
+    public void ChangeToShopping()
+    {
+        ChangeState(GameState.Shopping);
+    }
+
+    public void ChangeToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
+    private IEnumerator TransitionToState(GameState newState)
+    {
+        if(newState != GameState.MainMenu)
+        {
+            yield return new WaitForSecondsRealtime(0);
+        }
+
+        currentState = newState;
+        HandleStateChange();
+    }
+    
+    private void HandleStateChange()
+    {
+        HideAllMenu();
+
+        switch (currentState)
+        {
+            case GameState.Playing:
+                Time.timeScale = 1;
+                gameUI.SetActive(true);
+                break;
+            case GameState.Pause:
+                Time.timeScale = 0;
+                pauseUI.SetActive(true);
+                break;
+            case GameState.SaveFiles:
+                Time.timeScale = 0;
+                saveFilesUI.SetActive(true);
+                break;
+            case GameState.Settings:
+                Time.timeScale = 0;
+                settingsUI.SetActive(true);
+                break;
+            case GameState.Shopping:
+                Time.timeScale = 1;
+                shopUI.SetActive(true);
+                break;
+        }
+    }
+
+    
+    private void HideAllMenu()
+    {
+        gameUI.SetActive(false);
+        pauseUI.SetActive(false);
+        saveFilesUI.SetActive(false);
+        settingsUI.SetActive(false);
+        shopUI.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+}
