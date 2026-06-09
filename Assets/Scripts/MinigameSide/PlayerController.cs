@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!MinigameManager.Instance.IsGameActive()) return;
+        if (!MinigameSideManager.Instance.IsGameActive()) return;
 
         // Up / Down movement
         float vertical = Input.GetAxisRaw("Vertical");
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Asteroid") || other.CompareTag("Enemy") || other.CompareTag("EnemyBullet"))
         {
-            MinigameManager.Instance.PlayerHit();
+            MinigameSideManager.Instance.PlayerHit();
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
             enabled = false;

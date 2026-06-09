@@ -30,13 +30,13 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (!MinigameManager.Instance.IsGameActive()) return;
+        if (!MinigameSideManager.Instance.IsGameActive()) return;
 
         // Clean up destroyed enemies from count
         CleanUpEnemyCount();
 
         // Difficulty scaling based on time survived (0-3 minutes)
-        float timeElapsed = 180f - MinigameManager.Instance.GetRemainingTime();
+        float timeElapsed = 180f - MinigameSideManager.Instance.GetRemainingTime();
         float progress = Mathf.Clamp01(timeElapsed / 180f);
         currentSpawnInterval = Mathf.Lerp(baseSpawnInterval, minSpawnInterval, progress);
 

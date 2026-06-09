@@ -31,10 +31,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!MinigameManager.Instance.IsGameActive()) return;
+        if (!MinigameSideManager.Instance.IsGameActive()) return;
 
         // Increase difficulty over time (0-3 minutes)
-        float timeElapsed = 180f - MinigameManager.Instance.GetRemainingTime();
+        float timeElapsed = 180f - MinigameSideManager.Instance.GetRemainingTime();
         float progress = Mathf.Clamp01(timeElapsed / 180f);
         
         currentMoveSpeed = Mathf.Lerp(baseMoveSpeed, maxMoveSpeed, progress);
@@ -67,7 +67,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (rb != null)
         {
             // Bullet speed increases with difficulty
-            float timeElapsed = 180f - MinigameManager.Instance.GetRemainingTime();
+            float timeElapsed = 180f - MinigameSideManager.Instance.GetRemainingTime();
             float progress = Mathf.Clamp01(timeElapsed / 180f);
             float bulletSpeed = Mathf.Lerp(8f, 15f, progress);
             rb.velocity = Vector2.left * bulletSpeed;
