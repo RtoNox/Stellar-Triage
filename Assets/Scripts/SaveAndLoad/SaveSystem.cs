@@ -1,46 +1,46 @@
-// using UnityEngine;
-// using System.IO;
-// using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
-// public static class SaveSystem
-// {
+public static class SaveSystem
+{
    
-//     public static void SavePlayer(GameManager manager, int slotNumber)
-//     {
-//         BinaryFormatter formatter = new BinaryFormatter();
+    public static void SavePlayer(GameManager manager, int slotNumber)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
         
         
-//         string path = Path.Combine(Application.persistentDataPath, "save" + slotNumber + ".dat");
+        string path = Path.Combine(Application.persistentDataPath, "save" + slotNumber + ".dat");
         
-//         FileStream stream = new FileStream(path, FileMode.Create);
+        FileStream stream = new FileStream(path, FileMode.Create);
 
-//         PlayerData data = new PlayerData(manager);
+        PlayerData data = new PlayerData(manager);
 
-//         formatter.Serialize(stream, data);
-//         stream.Close();
+        formatter.Serialize(stream, data);
+        stream.Close();
         
-//         Debug.Log("Game berhasil disimpan di: " + path);
-//     }
+        Debug.Log("Game berhasil disimpan di: " + path);
+    }
 
 
-//     public static PlayerData LoadPlayer(int slotNumber)
-//     {
-//         string path = Path.Combine(Application.persistentDataPath, "save" + slotNumber + ".dat");
+    public static PlayerData LoadPlayer(int slotNumber)
+    {
+        string path = Path.Combine(Application.persistentDataPath, "save" + slotNumber + ".dat");
 
-//         if (File.Exists(path))
-//         {
-//             BinaryFormatter formatter = new BinaryFormatter();
-//             FileStream stream = new FileStream(path, FileMode.Open);
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
 
-//             PlayerData data = formatter.Deserialize(stream) as PlayerData;
-//             stream.Close();
+            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+            stream.Close();
 
-//             return data;
-//         }
-//         else
-//         {
-//             Debug.LogWarning("File save tidak ditemukan di slot: " + slotNumber);
-//             return null;
-//         }
-//     }
-// }
+            return data;
+        }
+        else
+        {
+            Debug.LogWarning("File save tidak ditemukan di slot: " + slotNumber);
+            return null;
+        }
+    }
+}
