@@ -5,14 +5,13 @@ using UnityEngine;
 public class LScreenManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void OnMouseDown()
     {
-        
+        TriggerObjectBehavior();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void TriggerObjectBehavior()
     {
-        
+        Debug.Log($"Clicked on: {gameObject.name}");
     }
 }
