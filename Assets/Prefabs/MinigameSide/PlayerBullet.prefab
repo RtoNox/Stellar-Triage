@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftBound: -12
-  rightBound: 12
+  rightBound: 8
 --- !u!61 &2870500019141971021
 BoxCollider2D:
   m_ObjectHideFlags: 0

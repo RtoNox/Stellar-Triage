@@ -205,8 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   topBound: 4.5
-  bottomBound: -4.5
+  bottomBound: -4.55
   bulletPrefab: {fileID: 6154828756188914355, guid: 5762935c9c12b2347bccb03f48054a5b, type: 3}
   firePoint: {fileID: 4068056729809373611}
   fireRate: 0.2
-  bulletSpeed: 15
+  bulletSpeed: 20
