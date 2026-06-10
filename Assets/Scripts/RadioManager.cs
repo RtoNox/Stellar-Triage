@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class Radiomanager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Radiomanager : MonoBehaviour
     [SerializeField] private GameObject Radio;
     [SerializeField] private GameObject PopUp;
     [SerializeField] private GameObject TextBox;
+    [SerializeField] private TextMeshProUGUI CallText;
     private PolygonCollider2D polyCollider;
 
     private float fiveSecondCheck;
@@ -27,14 +29,28 @@ public class Radiomanager : MonoBehaviour
         
         if (previousTime < fiveSecond && fiveSecondCheck >= fiveSecond)
         {
-            int eventIndex = Random.Range(1, 3);
-            if (eventIndex == 1)
+            int radioCheck = Random.Range(1, 3); //nanti ganti ke 1, 11
+            if (radioCheck == 1)
             {
-                if (polyCollider.enabled == false)
+                if (polyCollider.enabled == false && TextBox.activeSelf == false)
                 {
                     Debug.Log($"roll 1");
                     polyCollider.enabled = !polyCollider.enabled;
                     PopUp.SetActive(true);
+
+                    int jobCategory = Random.Range(1, 4);
+                    if (jobCategory == 1)
+                    {
+                        CallText.text = "This is an emergency";
+                    }
+                    else if (jobCategory == 2)
+                    {
+                        CallText.text = "This is kinda urgent";
+                    }
+                    else if (jobCategory == 3)
+                    {
+                        CallText.text = "This is a prank call hahaha";
+                    }
                 }
             }
             else
