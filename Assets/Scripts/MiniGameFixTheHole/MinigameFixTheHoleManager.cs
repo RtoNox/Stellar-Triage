@@ -75,8 +75,7 @@ public class MinigameFixTheHoleManager : MonoBehaviour
     {
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
-        
-        // Z = -1f dipasang agar posisi gambar lubang mengambang aman di depan monitor background
+       
         Vector3 spawnPosition = new Vector3(randomX, randomY, -1f);
 
         GameObject newHole = Instantiate(holePrefab, spawnPosition, Quaternion.identity);
@@ -119,7 +118,7 @@ public class MinigameFixTheHoleManager : MonoBehaviour
 
         BersihkanLubangSisa();
 
-        // RESET SAKLAR: Kembalikan menu utama dan tombol kamu ke layar seperti semula
+        
         if (gameUIUtama != null) gameUIUtama.SetActive(true);
 
         GameObject tombolSaya = GameObject.Find("FixAmbulanceButton");
