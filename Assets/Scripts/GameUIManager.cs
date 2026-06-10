@@ -154,6 +154,7 @@ public class GameUIManager : MonoBehaviour
                 break;
             case GameState.MinigameSide:
                 Time.timeScale = 1;
+                EnableAllButton();
                 mainGameInterface.SetActive(false);
                 minigameSideInterface.SetActive(true);
                 break;
