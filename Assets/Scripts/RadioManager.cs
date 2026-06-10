@@ -15,9 +15,12 @@ public class Radiomanager : MonoBehaviour
     [SerializeField] private GameObject CallNormal;
     [SerializeField] private GameObject CallEmergency;
     private PolygonCollider2D polyCollider;
+    public JobHandler jobHandlerRef;
 
     private float fiveSecondCheck;
     private float fiveSecond = 5.0f;
+
+    public int jobCurrent;
 
     private void Start()
     {
@@ -45,16 +48,19 @@ public class Radiomanager : MonoBehaviour
                     {
                         DisableAllText();
                         CallPrank.SetActive(true);
+                        jobCurrent = 1;
                     }
                     else if (jobCategory == 2)
                     {
                         DisableAllText();
                         CallNormal.SetActive(true);
+                        jobCurrent = 2;
                     }
                     else if (jobCategory == 3)
                     {
                         DisableAllText();
                         CallEmergency.SetActive(true);
+                        jobCurrent = 3;
                     }
                 }
             }
@@ -74,9 +80,25 @@ public class Radiomanager : MonoBehaviour
 
     public void NextButton()
     {
+        DisableAllText();
         TextBox.SetActive(false);
         
-        //Move job to left panel
+        if (jobHandlerRef.JobOne.activeSelf == false)
+        {
+            jobHandlerRef.JobOne.SetActive(true);
+        }
+        else if (jobHandlerRef.JobTwo.activeSelf == false)
+        {
+            jobHandlerRef.JobTwo.SetActive(true);
+        }
+        else if (jobHandlerRef.JobThree.activeSelf == false)
+        {
+            jobHandlerRef.JobThree.SetActive(true);
+        }
+        else if (jobHandlerRef.JobFour.activeSelf == false)
+        {
+            jobHandlerRef.JobFour.SetActive(true);
+        }
     }
 
     public void TriggerInteraction()
