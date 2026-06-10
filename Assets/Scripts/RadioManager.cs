@@ -11,7 +11,9 @@ public class Radiomanager : MonoBehaviour
     [SerializeField] private GameObject Radio;
     [SerializeField] private GameObject PopUp;
     [SerializeField] private GameObject TextBox;
-    [SerializeField] private TextMeshProUGUI CallText;
+    [SerializeField] private GameObject CallPrank;
+    [SerializeField] private GameObject CallNormal;
+    [SerializeField] private GameObject CallEmergency;
     private PolygonCollider2D polyCollider;
 
     private float fiveSecondCheck;
@@ -41,15 +43,18 @@ public class Radiomanager : MonoBehaviour
                     int jobCategory = Random.Range(1, 4);
                     if (jobCategory == 1)
                     {
-                        CallText.text = "This is an emergency";
+                        DisableAllText();
+                        CallPrank.SetActive(true);
                     }
                     else if (jobCategory == 2)
                     {
-                        CallText.text = "This is kinda urgent";
+                        DisableAllText();
+                        CallNormal.SetActive(true);
                     }
                     else if (jobCategory == 3)
                     {
-                        CallText.text = "This is a prank call hahaha";
+                        DisableAllText();
+                        CallEmergency.SetActive(true);
                     }
                 }
             }
@@ -81,5 +86,12 @@ public class Radiomanager : MonoBehaviour
         PopUp.SetActive(false);
         TextBox.SetActive(true);
         OnClickInteraction?.Invoke(); 
+    }
+
+    private void DisableAllText()
+    {
+        CallPrank.SetActive(false);
+        CallNormal.SetActive(false);
+        CallEmergency.SetActive(false);
     }
 }
