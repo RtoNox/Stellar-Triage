@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Radiomanager : MonoBehaviour
+public class MinigamePadManager : MonoBehaviour
 {
     public UnityEvent OnClickInteraction;
     private SpriteRenderer spriteRenderer;
@@ -15,7 +15,7 @@ public class Radiomanager : MonoBehaviour
 
     public void TriggerInteraction()
     {
-        Debug.Log($"radio click");
+        Debug.Log($"pad click");
         OnClickInteraction?.Invoke(); 
     }
 }
