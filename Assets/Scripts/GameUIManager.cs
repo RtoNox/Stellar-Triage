@@ -34,6 +34,11 @@ public class GameUIManager : MonoBehaviour
     public static MainMenuManager instance;
     public GameState currentState { get; private set; }
 
+    void Start()
+    {
+        EnableAllButton();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -72,7 +77,6 @@ public class GameUIManager : MonoBehaviour
     public void ChangeToPause()
     {
         ChangeState(GameState.Pause);
-        DisableAllButton();
     }
 
     public void ChangeToSaveFiles()
@@ -88,13 +92,11 @@ public class GameUIManager : MonoBehaviour
     public void ChangeToShopping()
     {
         ChangeState(GameState.Shopping);
-        DisableAllButton();
     }
 
     public void ChangeToLeftPanel()
     {
         ChangeState(GameState.LeftPanel);
-        DisableAllButton();
     }
 
     public void ChangeToMinigameSide()
@@ -121,11 +123,13 @@ public class GameUIManager : MonoBehaviour
     private void HandleStateChange()
     {
         HideAllMenu();
+        DisableAllButton();
 
         switch (currentState)
         {
             case GameState.Playing:
                 Time.timeScale = 1;
+                EnableAllButton();
                 gameUI.SetActive(true);
                 break;
             case GameState.Pause:
