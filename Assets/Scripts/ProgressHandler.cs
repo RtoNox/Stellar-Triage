@@ -10,8 +10,15 @@ public class ProgressHandler : MonoBehaviour
     [SerializeField] private float DefaultSpeed = 1f;
     [SerializeField] private UnityEvent<float> OnProgress; //guna buat display teks barnya
     [SerializeField] private UnityEvent OnCompleted;
+    [SerializeField] private GameObject ProgressBar;
     [SerializeField] private GameObject SendButton;
+    [SerializeField] private GameObject DoneButton;
     [SerializeField] private Button TriggerButton;
+    
+    public GameObject ProgressOne;
+    public GameObject ProgressTwo;
+    public GameObject ProgressThree;
+    public GameObject ProgressFour;
 
     private Coroutine AnimationCoroutine;
 
@@ -59,5 +66,14 @@ public class ProgressHandler : MonoBehaviour
         ProgressImage.fillAmount = progress;
         OnProgress?.Invoke(progress);
         OnCompleted?.Invoke();
+
+        ProgressImage.fillAmount = 0f;
+        DoneButton.SetActive(true);
+    }
+
+    public void HideDone()
+    {
+        DoneButton.SetActive(false);
+        SendButton.SetActive(true);
     }
 }

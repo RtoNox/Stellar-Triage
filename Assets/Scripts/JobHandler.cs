@@ -16,14 +16,18 @@ public class JobHandler : MonoBehaviour
     public GameObject ProgressThree;
     public GameObject ProgressFour;
 
-    // [SerializeField] private Button JobOneY;
-    // [SerializeField] private Button JobOneN;
-    // [SerializeField] private Button JobTwoY;
-    // [SerializeField] private Button JobTwoN;
-    // [SerializeField] private Button JobThreeY;
-    // [SerializeField] private Button JobThreeN;
-    // [SerializeField] private Button JobFourY;
-    // [SerializeField] private Button JobFourN;
+    [SerializeField] private Button JobOneY;
+    [SerializeField] private Button JobOneN;
+    [SerializeField] private Button JobTwoY;
+    [SerializeField] private Button JobTwoN;
+    [SerializeField] private Button JobThreeY;
+    [SerializeField] private Button JobThreeN;
+    [SerializeField] private Button JobFourY;
+    [SerializeField] private Button JobFourN;
+    // [SerializeField] private GameObject DoneOne;
+    // [SerializeField] private Ga DoneTwo;
+    // [SerializeField] private Button DoneThree;
+    // [SerializeField] private Button DoneFour;
 
     public int oneStatus;
     public int twoStatus;
@@ -46,7 +50,7 @@ public class JobHandler : MonoBehaviour
 
     public void AcceptJobOne()
     {
-        JobOne.SetActive(false);
+        DisableJobOneButton();
         Debug.Log($"acc 1");
 
         // Move to middle screen
@@ -54,13 +58,14 @@ public class JobHandler : MonoBehaviour
     }
     public void DeclineJobOne()
     {
+        EnableJobOneButton();
         JobOne.SetActive(false);
         Debug.Log($"dec 1");
     }
 
     public void AcceptJobTwo()
     {
-        JobTwo.SetActive(false);
+        DisableJobTwoButton();
         Debug.Log($"acc 2");
 
         // Move to middle screen
@@ -68,13 +73,14 @@ public class JobHandler : MonoBehaviour
     }
     public void DeclineJobTwo()
     {
+        EnableJobTwoButton();
         JobTwo.SetActive(false);
         Debug.Log($"dec 2");
     }
 
     public void AcceptJobThree()
     {
-        JobThree.SetActive(false);
+        DisableJobThreeButton();
         Debug.Log($"acc 3");
 
         // Move to middle screen
@@ -82,13 +88,14 @@ public class JobHandler : MonoBehaviour
     }
     public void DeclineJobThree()
     {
+        EnableJobThreeButton();
         JobThree.SetActive(false);
         Debug.Log($"dec 3");
     }
 
     public void AcceptJobFour()
     {
-        JobFour.SetActive(false);
+        DisableJobFourButton();
         Debug.Log($"acc 4");
 
         // Move to middle screen
@@ -96,6 +103,7 @@ public class JobHandler : MonoBehaviour
     }
     public void DeclineJobFour()
     {
+        EnableJobFourButton();
         JobFour.SetActive(false);
         Debug.Log($"dec 4");
     }
@@ -117,24 +125,45 @@ public class JobHandler : MonoBehaviour
         ProgressFour.SetActive(false);
     }
 
-    // private void DisableJobOneButton()
-    // {
-    //     JobOneY.interactable = false;
-    //     JobOneN.interactable = false;
-    // }
-    // private void DisableJobTwoButton()
-    // {
-    //     JobTwoY.interactable = false;
-    //     JobTwoN.interactable = false;
-    // }
-    // private void DisableJobThreeButton()
-    // {
-    //     JobThreeY.interactable = false;
-    //     JobThreeN.interactable = false;
-    // }
-    // private void DisableJobFourButton()
-    // {
-    //     JobFourY.interactable = false;
-    //     JobFourN.interactable = false;
-    // }
+    private void DisableJobOneButton()
+    {
+        JobOneY.interactable = false;
+        JobOneN.interactable = false;
+    }
+    private void DisableJobTwoButton()
+    {
+        JobTwoY.interactable = false;
+        JobTwoN.interactable = false;
+    }
+    private void DisableJobThreeButton()
+    {
+        JobThreeY.interactable = false;
+        JobThreeN.interactable = false;
+    }
+    private void DisableJobFourButton()
+    {
+        JobFourY.interactable = false;
+        JobFourN.interactable = false;
+    }
+
+    private void EnableJobOneButton()
+    {
+        JobOneY.interactable = true;
+        JobOneN.interactable = true;
+    }
+    private void EnableJobTwoButton()
+    {
+        JobTwoY.interactable = true;
+        JobTwoN.interactable = true;
+    }
+    private void EnableJobThreeButton()
+    {
+        JobThreeY.interactable = true;
+        JobThreeN.interactable = true;
+    }
+    private void EnableJobFourButton()
+    {
+        JobFourY.interactable = true;
+        JobFourN.interactable = true;
+    }
 }
