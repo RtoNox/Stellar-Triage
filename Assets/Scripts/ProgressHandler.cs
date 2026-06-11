@@ -7,10 +7,22 @@ using UnityEngine.UI;
 public class ProgressHandler : MonoBehaviour
 {
     [SerializeField] private Image ProgressImage;
-    [SerializeField] private float DefaultSpeed;
-    [SerializeField] private UnityEvent<float> OnProgress;
+    [SerializeField] private float DefaultSpeed = 1f;
+    [SerializeField] private UnityEvent<float> OnProgress; //guna buat display teks barnya
     [SerializeField] private UnityEvent OnCompleted;
+    [SerializeField] private GameObject SendButton;
+    [SerializeField] private Button TriggerButton;
+
     private Coroutine AnimationCoroutine;
+
+    private void Awake()
+    {
+        TriggerButton.onClick.AddListener(() =>
+        {
+            SetProgress(1f);
+            SendButton.SetActive(false);
+        });
+    }
 
     public void SetProgress(float progress)
     {

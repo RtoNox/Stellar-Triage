@@ -50,6 +50,7 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 1");
 
         // Move to middle screen
+        ProgressOne.SetActive(true);
     }
     public void DeclineJobOne()
     {
@@ -63,6 +64,7 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 2");
 
         // Move to middle screen
+        ProgressTwo.SetActive(true);
     }
     public void DeclineJobTwo()
     {
@@ -76,6 +78,7 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 3");
 
         // Move to middle screen
+        ProgressThree.SetActive(true);
     }
     public void DeclineJobThree()
     {
@@ -89,11 +92,29 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 4");
 
         // Move to middle screen
+        ProgressFour.SetActive(true);
     }
     public void DeclineJobFour()
     {
         JobFour.SetActive(false);
         Debug.Log($"dec 4");
+    }
+
+    public void HideBarOne()
+    {
+        ProgressOne.SetActive(false);
+    }
+    public void HideBarTwo()
+    {
+        ProgressTwo.SetActive(false);
+    }
+    public void HideBarThree()
+    {
+        ProgressThree.SetActive(false);
+    }
+    public void HideBarFour()
+    {
+        ProgressFour.SetActive(false);
     }
 
     // private void DisableJobOneButton()
