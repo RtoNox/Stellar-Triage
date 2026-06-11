@@ -11,6 +11,21 @@ public class JobHandler : MonoBehaviour
     public GameObject JobTwo;
     public GameObject JobThree;
     public GameObject JobFour;
+    public GameObject ProgressOne;
+    public GameObject ProgressTwo;
+    public GameObject ProgressThree;
+    public GameObject ProgressFour;
+
+    [SerializeField] private Slider oneBar;
+    [SerializeField] private Slider twoBar;
+    [SerializeField] private Slider threeBar;
+    [SerializeField] private Slider fourBar;
+
+    private Slider oneSlider;
+    private Slider twoSlider;
+    private Slider threeSlider;
+    private Slider fourSlider;
+
 
     // [SerializeField] private Button JobOneY;
     // [SerializeField] private Button JobOneN;
@@ -25,6 +40,18 @@ public class JobHandler : MonoBehaviour
     public int twoStatus;
     public int threeStatus;
     public int fourStatus;
+    // public int oneBar;
+    // public int twoBar;
+    // public int threeBar;
+    // public int fourBar;
+
+    private void Start()
+    {
+        oneSlider = oneBar.GetComponent<Slider>();
+        twoSlider = twoBar.GetComponent<Slider>();
+        threeSlider = threeBar.GetComponent<Slider>();
+        fourSlider = fourBar.GetComponent<Slider>();
+    }
 
     private void Update()
     {
@@ -37,6 +64,7 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 1");
 
         // Move to middle screen
+        ProgressOne.SetActive(true);
     }
     public void DeclineJobOne()
     {
@@ -50,6 +78,7 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 2");
 
         // Move to middle screen
+        ProgressTwo.SetActive(true);
     }
     public void DeclineJobTwo()
     {
@@ -63,6 +92,7 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 3");
 
         // Move to middle screen
+        ProgressThree.SetActive(true);
     }
     public void DeclineJobThree()
     {
@@ -76,6 +106,7 @@ public class JobHandler : MonoBehaviour
         Debug.Log($"acc 4");
 
         // Move to middle screen
+        ProgressFour.SetActive(true);
     }
     public void DeclineJobFour()
     {
